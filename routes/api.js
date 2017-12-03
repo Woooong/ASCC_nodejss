@@ -146,8 +146,8 @@ router.post('/getAtdChk', function(req, res, next) {
 
         var ai_auth =results[0].ai_auth;
 
-        if(ai_auth == auth) {
-            queryString = "INSERT INTO attendance (ci_code, si_num, auth) VALUES('"+ ci_code +"', '"+ si_num +"','"+ ai_auth +"')";
+        if(ai_auth) {
+            queryString = "INSERT INTO attendance (ci_code, si_num) VALUES('"+ ci_code +"', '"+ si_num +"')";
             connection.query(queryString, function (error, results) {
                 console.log(results);
 
