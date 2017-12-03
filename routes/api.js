@@ -138,7 +138,7 @@ router.post('/getAtdChk', function(req, res, next) {
 
     console.log(ci_code);
 
-    if(si_num == undefined|| ci_code == undefined || auth == undefined){
+    if(si_num == undefined|| ci_code == undefined){
         res.send({"code" : 203, "response" : "empty parmater"});
     }
     var queryString = "SELECT * FROM attendance_info WHERE ai_ci_code ='"+ ci_code +"' ORDER BY ai_id DESC LIMIT 1";
