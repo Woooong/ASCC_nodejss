@@ -164,7 +164,7 @@ router.post('/getAtdChk', function(req, res, next) {
 
 //TODO 수업리스트
 router.post('/getStuClass', function (req, res, next) {
-    var si_num = req.body.stdId;
+    var si_num = req.body.si_num;
     var queryString = 'SELECT a.si_num, a.si_name, c.ci_name, c.ci_room, c.ci_time FROM ascc.student_info AS a left join ascc.ci_si_relation as b ON a.si_id = b.csr_si_id inner join ascc.class_info AS c ON b.csr_ci_id = c.ci_id WHERE a.si_num ='+si_num+';';
     // console.log(si_num);
     connection.query(queryString, function (error, results) {
