@@ -18,7 +18,7 @@ router.get('/', function(req, res, next) {
 });
 //test
 router.get('/getClass', function(req, res, next) {
-
+    console.log(new Date());
     connection.query('SELECT * from class_info', function (error, results, fields) {
         if (error)
             res.json("error");
