@@ -13,11 +13,12 @@ connection.connect();
 
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
+router.get('/', function(req, res) {
     res.render('index', { title: 'api_controller' });
 });
+
 //test
-router.get('/getClass', function(req, res, next) {
+router.get('/getClass', function(req, res) {
     console.log(new Date());
     connection.query('SELECT * from class_info', function (error, results, fields) {
         if (error)
@@ -27,7 +28,7 @@ router.get('/getClass', function(req, res, next) {
     });
 });
 
-router.get('/getClassAuth', function(req,res,next){
+router.get('/getClassAuth', function(req,res){
     var si_num = req.query.si_num;
 
     if(si_num == '' || si_num == undefined){
@@ -99,8 +100,9 @@ function ClassAuth(req, callback){
         callback({"code" : 200, "response" : "success", "data" : results, "auth" : auth});
     });
 }
+
 //TODO 이메일 인증보내기
-router.post('/postAuth', function(req, res, next) {
+router.post('/postAuth', function(req, res) {
 
     connection.query('SELECT * from class_info', function (error, results, fields) {
         if (error)
@@ -110,6 +112,7 @@ router.post('/postAuth', function(req, res, next) {
     });
 
 });
+
 //TODO 로그인
 router.post('/login',function(req,res){
     //validate
@@ -126,17 +129,15 @@ router.post('/login',function(req,res){
        res.json({"code" : 200, "response" : "success", "data" : results});
    });
 });
-//TODO 교수님 확인
-//TODO 수업체크
 
 //TODO 출석인증
-router.post('/getAtdChk', function(req, res, next) {
+router.post('/getAtdChk', function(req, res) {
     //validate
     var si_num = req.body.stdId;
     var ci_code = req.body.ciCode;
     var auth = req.body.auth;
 
-    console.log(ci_code);
+    // console.log(ci_code);
 
     if(si_num == undefined|| ci_code == undefined){
         res.send({"code" : 203, "response" : "empty parmater"});
@@ -163,7 +164,7 @@ router.post('/getAtdChk', function(req, res, next) {
 });
 
 //TODO 수업리스트
-router.post('/getStuClass', function (req, res, next) {
+router.post('/getStuClass', function (req, res) {
     var si_num = req.body.si_num;
     var queryString = 'SELECT a.si_num, a.si_name, c.ci_name, c.ci_room, c.ci_time FROM ascc.student_info AS a left join ascc.ci_si_relation as b ON a.si_id = b.csr_si_id inner join ascc.class_info AS c ON b.csr_ci_id = c.ci_id WHERE a.si_num ='+si_num+';';
     // console.log(si_num);
@@ -180,6 +181,10 @@ router.post('/getStuClass', function (req, res, next) {
     return true;
 });
 
+//TODO 재실인원
+router.post('/getInClass', function (req, res) {
+
+});
 module.exports = router;
 
 String.prototype.insert = function (index, string) {
