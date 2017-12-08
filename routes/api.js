@@ -1,5 +1,6 @@
 var express = require('express');
 var crypto = require('crypto');
+var yymmdd = require('yyyy-mm-dd');
 var router = express.Router();
 
 var mysql      = require('mysql');
@@ -13,7 +14,7 @@ connection.connect();
 
 
 /* GET home page. */
-router.get('/', function(req, res) {
+router.get('/', function(req, res, next) {
     res.render('index', { title: 'api_controller' });
 });
 
@@ -135,7 +136,6 @@ router.post('/getAtdChk', function(req, res) {
     //validate
     var si_num = req.body.stdId;
     var ci_code = req.body.ciCode;
-    var auth = req.body.auth;
 
     // console.log(ci_code);
 
@@ -182,10 +182,13 @@ router.post('/getStuClass', function (req, res) {
 });
 
 //TODO 재실인원
-router.post('/getInClass', function (req, res) {
-    var auth_cd = req.body.auth;
-    var queryString = 'SELECT count(*) FROM ascc.attendance where auth = '+ auth_cd +' group by auth;';
-    // console.log(si_num);
+router.get('/getInClass', function (req, res) {
+    var time = yymmdd.withTime().toString();
+    var lowTime = yymmdd.withTime(new Date(Date.parse(time) - 5000*60)).toString();
+    // var time = '2017-12-08 10:50:35';
+    // var lowTime = '2017-12-08 10:55:35';
+
+    var queryString = "SELECT ifnull(count(ci_code),0) as count FROM ascc.attendance where created_at between '"+ time +"' and '"+ lowTime +"';";
     connection.query(queryString, function (error, results) {
         // console.log(results);
         if(error)
@@ -196,6 +199,7 @@ router.post('/getInClass', function (req, res) {
 
     return true;
 });
+
 module.exports = router;
 
 String.prototype.insert = function (index, string) {

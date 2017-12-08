@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7ff8a0a5-9358-4447-a4eb-372f864d08a5" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/api.js" afterPath="$PROJECT_DIR$/routes/api.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/admin/index.ejs" afterPath="$PROJECT_DIR$/views/admin/index.ejs" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -19,18 +21,39 @@
       <file leaf-file-name="api.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/routes/api.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="366">
-              <caret line="193" column="79" lean-forward="false" selection-start-line="193" selection-start-column="79" selection-end-line="193" selection-end-column="79" />
+            <state relative-caret-position="547">
+              <caret line="201" column="0" lean-forward="true" selection-start-line="201" selection-start-column="0" selection-end-line="201" selection-end-column="0" />
               <folding>
-                <element signature="e#379#436#0" expanded="false" />
-                <element signature="e#490#798#0" expanded="false" />
-                <element signature="e#847#1523#0" expanded="false" />
+                <element signature="e#532#840#0" expanded="false" />
+                <element signature="e#889#1565#0" expanded="false" />
                 <element signature="n#!!block;n#UserInfo#0" expanded="false" />
                 <element signature="n#!!block;n#ClassAuth#0" expanded="false" />
-                <element signature="e#3271#3601#0" expanded="false" />
-                <element signature="e#3654#4157#0" expanded="false" />
-                <element signature="e#4218#5257#0" expanded="false" />
+                <element signature="e#3313#3643#0" expanded="false" />
+                <element signature="e#3696#4199#0" expanded="false" />
+                <element signature="e#4260#5269#0" expanded="false" />
+                <element signature="e#5334#6118#0" expanded="false" />
+                <element signature="e#6180#6882#0" expanded="false" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.ejs" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/views/admin/index.ejs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="427">
+              <caret line="126" column="10" lean-forward="false" selection-start-line="126" selection-start-column="10" selection-end-line="126" selection-end-column="10" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="app.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-1">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -43,6 +66,7 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
+        <option value="$PROJECT_DIR$/views/admin/index.ejs" />
         <option value="$PROJECT_DIR$/routes/api.js" />
       </list>
     </option>
@@ -55,7 +79,10 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="NodeModulesDirectoryManager">
+    <handled-path value="$PROJECT_DIR$/node_modules" />
+  </component>
+  <component name="ProjectFrameBounds" fullScreen="true">
     <option name="width" value="1440" />
     <option name="height" value="900" />
   </component>
@@ -86,7 +113,23 @@
             <path>
               <item name="ASCC_nodejss" type="b2602c69:ProjectViewProjectNode" />
               <item name="ASCC_nodejss" type="462c0819:PsiDirectoryNode" />
+              <item name="public" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ASCC_nodejss" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ASCC_nodejss" type="462c0819:PsiDirectoryNode" />
               <item name="routes" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ASCC_nodejss" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ASCC_nodejss" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ASCC_nodejss" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ASCC_nodejss" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="admin" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -124,15 +167,15 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1512734563133</updated>
-      <workItem from="1512734564903" duration="733000" />
+      <workItem from="1512734564903" duration="3703000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="733000" />
+    <option name="totallyTimeSpent" value="3703000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1440" height="812" extended-state="6" />
+    <frame x="0" y="0" width="1440" height="900" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24947146" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -165,19 +208,36 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/admin/index.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="427">
+          <caret line="126" column="10" lean-forward="false" selection-start-line="126" selection-start-column="10" selection-end-line="126" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/routes/api.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="366">
-          <caret line="193" column="79" lean-forward="false" selection-start-line="193" selection-start-column="79" selection-end-line="193" selection-end-column="79" />
+        <state relative-caret-position="547">
+          <caret line="201" column="0" lean-forward="true" selection-start-line="201" selection-start-column="0" selection-end-line="201" selection-end-column="0" />
           <folding>
-            <element signature="e#379#436#0" expanded="false" />
-            <element signature="e#490#798#0" expanded="false" />
-            <element signature="e#847#1523#0" expanded="false" />
+            <element signature="e#532#840#0" expanded="false" />
+            <element signature="e#889#1565#0" expanded="false" />
             <element signature="n#!!block;n#UserInfo#0" expanded="false" />
             <element signature="n#!!block;n#ClassAuth#0" expanded="false" />
-            <element signature="e#3271#3601#0" expanded="false" />
-            <element signature="e#3654#4157#0" expanded="false" />
-            <element signature="e#4218#5257#0" expanded="false" />
+            <element signature="e#3313#3643#0" expanded="false" />
+            <element signature="e#3696#4199#0" expanded="false" />
+            <element signature="e#4260#5269#0" expanded="false" />
+            <element signature="e#5334#6118#0" expanded="false" />
+            <element signature="e#6180#6882#0" expanded="false" />
           </folding>
         </state>
       </provider>
