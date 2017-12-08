@@ -183,7 +183,18 @@ router.post('/getStuClass', function (req, res) {
 
 //TODO 재실인원
 router.post('/getInClass', function (req, res) {
+    var auth_cd = req.body.auth;
+    var queryString = 'SELECT count(*) FROM ascc.attendance where auth = '+ auth_cd +' group by auth;';
+    // console.log(si_num);
+    connection.query(queryString, function (error, results) {
+        // console.log(results);
+        if(error)
+            res.send({"code" : 202, "response" : "msyql_error", "error" : error});
+        else if(results.length > 0)
+            res.send({"code" : 200, "response" : "success", "data" : results});
+    });
 
+    return true;
 });
 module.exports = router;
 
