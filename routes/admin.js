@@ -42,6 +42,7 @@ router.get('/class/:id', function(req, res, next) {
             results[i].attendance = Math.floor(Math.random() * (40 - 35 + 1)) + 35;
             results[i].absence = 40-results[i].attendance;
             results[i].breakaway = Math.floor((Math.random() * 10) + 1);
+            results[i].attpoints = (10 - (results[i].absence * 0.5 + results[i].breakaway * 0.3)).toFixed(1);
 
         }
 
