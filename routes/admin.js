@@ -134,7 +134,7 @@ router.get('/class/:ci_code/:si_num', function(req, res, next) {
 Date.prototype.format = function(f) {
     if (!this.valueOf()) return " ";
 
-    var weekName = ["Sun", "Mon", "Tue", "Wes", "Thur", "Fri", "Sat"];
+    var weekName = ["Sun", "Mon", "Tue", "Wed", "Thur", "Fri", "Sat"];
     var d = this;
 
     return f.replace(/(yyyy|yy|MM|dd|E|hh|mm|ss|a\/p)/gi, function($1) {
