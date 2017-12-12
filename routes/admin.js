@@ -118,7 +118,7 @@ router.get('/class/:ci_code/:si_num', function(req, res, next) {
             console.log("str_time :" +str_time);
             console.log("end_time :" +end_time);
             for(var j=0; j<results.length; j++){
-                results[j].created_at = results[j].created_at.setHours(results[j].created_at.getHours() + 9);
+                // results[j].created_at = results[j].created_at.setHours(results[j].created_at.getHours() + 9);
 
                 if(date_arr[i][0] == results[j].created_at.format('yyyy-MM-dd')){
                     if(str_time < results[j].created_at.format('HH:mm') && end_time > results[j].created_at.format('HH:mm')){
