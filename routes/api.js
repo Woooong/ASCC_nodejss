@@ -142,12 +142,12 @@ router.post('/getAtdChk', function(req, res) {
     if(si_num == undefined|| ci_code == undefined){
         res.send({"code" : 203, "response" : "empty parmater"});
     }
-    var queryString = "SELECT * FROM attendance_info WHERE ai_ci_code ='"+ ci_code +"' ORDER BY ai_id DESC LIMIT 1";
-    connection.query(queryString, function (error, results) {
-
-        var ai_auth =results[0].ai_auth;
-
-        if(ai_auth) {
+    // var queryString = "SELECT * FROM attendance_info WHERE ai_ci_code ='"+ ci_code +"' ORDER BY ai_id DESC LIMIT 1";
+    // connection.query(queryString, function (error, results) {
+    //
+    //     var ai_auth =results[0].ai_auth;
+    //
+    //     if(ai_auth) {
             queryString = "INSERT INTO attendance (ci_code, si_num) VALUES('"+ ci_code +"', '"+ si_num +"')";
             connection.query(queryString, function (error, results) {
                 console.log(results);
@@ -157,8 +157,8 @@ router.post('/getAtdChk', function(req, res) {
                 else if(results)
                     res.send({"code" : 200, "response" : "attendace check success", "data" : results});
             });
-        }
-    });
+    //     }
+    // });
 
     return true;
 });
