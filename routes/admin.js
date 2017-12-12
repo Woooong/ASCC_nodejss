@@ -4,7 +4,7 @@ var bodyParser = require('body-parser');
 var router = express.Router();
 var mysql      = require('mysql');
 var connection = mysql.createConnection({
-    host     : '13.124.255.163',
+    host     : '13.124.5.168',
     user     : 'root',
     password : 'rPtjdgurdldnfkagjdnd123',
     database : 'ascc'
@@ -60,13 +60,16 @@ router.get('/class/:ci_code/:si_num', function(req, res, next) {
         if (error)
             res.json("error");
         //개강일 -> 20170901
+        console.log(results);
         var str_date = new Date("2017-09-01");
 
         //종강일 -> 20171222
         var end_date = new Date("2017-12-22");
 
         //수업 요일 및 강의실
-        var ci_week = "Mon 10:30~12:00 Pal 410,Mon 13:00~15:00 Pal 333 Pal 318,Thur 10:30~12:00 Pal 410";
+        // var ci_week = "Mon 10:30~12:00 Pal 410,Mon 13:00~15:00 Pal 333 Pal 318,Thur 10:30~12:00 Pal 410";
+        var ci_week = "Tue 21:00~23:00 Pal 333,Thur 13:00~18:00 Pal Hall";
+
         ci_week = ci_week.split(',');
         for(var i = 0; i<ci_week.length; i++){
             ci_week[i] = ci_week[i].split(' ');
