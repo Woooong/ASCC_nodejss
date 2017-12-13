@@ -187,8 +187,9 @@ router.get('/getInClass', function (req, res) {
     var lowTime = yymmdd.withTime(new Date(Date.parse(time) - 5000*60)).toString();
     // var time = '2017-12-08 10:50:35';
     // var lowTime = '2017-12-08 10:55:35';
-
-    var queryString = "SELECT ifnull(count(ci_code),0) as count FROM ascc.attendance where created_at between '"+ time +"' and '"+ lowTime +"';";
+    console.log(time);
+    console.log(lowTime);
+    var queryString = "SELECT ifnull(count(distinct si_num),0) as count FROM ascc.attendance where created_at between  '"+ lowTime +"' and '"+ time +"' group by si_num;";
     connection.query(queryString, function (error, results) {
         // console.log(results);
         if(error)
