@@ -36,39 +36,14 @@ router.get('/class/:id', function(req, res, next) {
     connection.query('select * from student_info, ci_si_relation, class_info where si_type="student" and csr_ci_id="'+ id +'" and csr_si_id= si_id and ci_id="'+id+'";', function (error, results, fields) {
         if (error)
             res.json("error");
-
-        console.log(results[0]);
-        for(var i=0; i<results.length; i++){
-            results[i].attendance = Math.floor(Math.random() * (40 - 35 + 1)) + 35;
-            results[i].absence = 40-results[i].attendance;
-            results[i].breakaway = Math.floor((Math.random() * 10) + 1);
-            results[i].attpoints = (10 - (results[i].absence * 0.5 + results[i].breakaway * 0.3)).toFixed(1);
-
-        }
-
-        res.render('admin/class',{studnets: results});
-    });
-
-});
-
-router.get('/class/:ci_code/:si_num', function(req, res, next) {
-    var ci_code = req.params.ci_code;
-    var si_num = req.params.si_num;
-    connection.query('select * from attendance \n' +
-        'where si_num = "'+si_num+'"\n' +
-        'and ci_code = "'+ci_code+'"', function (error, results, fields) {
-        if (error)
-            res.json("error");
-        //개강일 -> 20170901
-        console.log(results);
-        var str_date = new Date("2017-09-01");
+        var str_date = new Date("2017-12-13");
 
         //종강일 -> 20171222
         var end_date = new Date("2017-12-22");
 
         //수업 요일 및 강의실
         // var ci_week = "Mon 10:30~12:00 Pal 410,Mon 13:00~15:00 Pal 333 Pal 318,Thur 10:30~12:00 Pal 410";
-        var ci_week = "Tue 21:00~23:00 Pal 333,Thur 13:00~18:00 Pal Hall";
+        var ci_week = results[0].ci_time;
 
         ci_week = ci_week.split(',');
         for(var i = 0; i<ci_week.length; i++){
@@ -87,6 +62,13 @@ router.get('/class/:ci_code/:si_num', function(req, res, next) {
                             date_arr[cnt] = date_arr[cnt].split(" ");
                             date_arr[cnt][3] = 0;
                             date_arr[cnt][4] = 0;
+                            var str_time = date_arr[cnt][1].split('~')[0];
+                            var end_time = date_arr[cnt][1].split('~')[1];
+                            var str_hour = str_time.split(':')[0];
+                            var end_hour = end_time.split(':')[0];
+                            var min = (end_hour-str_hour) * 60;
+                            var att_cnt = min/5;
+                            date_arr[cnt][5] = att_cnt;
                             cnt++;
                         }
                     }
@@ -101,6 +83,100 @@ router.get('/class/:ci_code/:si_num', function(req, res, next) {
                         date_arr[cnt] = date_arr[cnt].split(" ");
                         date_arr[cnt][3] = 0;
                         date_arr[cnt][4] = 0;
+                        var str_time = date_arr[cnt][1].split('~')[0];
+                        var end_time = date_arr[cnt][1].split('~')[1];
+                        var str_hour = str_time.split(':')[0];
+                        var end_hour = end_time.split(':')[0];
+                        var min = (end_hour-str_hour) * 60;
+                        var att_cnt = min/5;
+                        date_arr[cnt][5] = att_cnt;
+                        cnt++;
+                    }
+                }
+
+                if(str_date.toString() === end_date.toString()){
+                    break;
+                }
+            }
+            i++;
+        }
+        console.log(results[0]);
+        for(var i=0; i<results.length; i++){
+            results[i].attendance = Math.floor(Math.random() * (40 - 35 + 1)) + 35;
+            results[i].absence = 40-results[i].attendance;
+            results[i].breakaway = Math.floor((Math.random() * 10) + 1);
+            results[i].attpoints = (10 - (results[i].absence * 0.5 + results[i].breakaway * 0.3)).toFixed(1);
+
+        }
+
+        res.render('admin/class',{studnets: results});
+    });
+
+});
+
+router.get('/class/:ci_code/:si_num', function(req, res, next) {
+    var ci_code = req.params.ci_code;
+    var si_num = req.params.si_num;
+    connection.query('select a.*,c.ci_time from attendance a, class_info c \n' +
+        'where a.si_num = "'+si_num+'"\n' +
+        'and a.ci_code = "'+ci_code+'" and c.ci_code = a.ci_code', function (error, results, fields) {
+        if (error)
+            res.json("error");
+        //개강일 -> 20170901
+        var str_date = new Date("2017-12-13");
+
+        //종강일 -> 20171222
+        var end_date = new Date("2017-12-22");
+
+        //수업 요일 및 강의실
+        // var ci_week = "Mon 10:30~12:00 Pal 410,Mon 13:00~15:00 Pal 333 Pal 318,Thur 10:30~12:00 Pal 410";
+        var ci_week = results[0].ci_time;
+
+        ci_week = ci_week.split(',');
+        for(var i = 0; i<ci_week.length; i++){
+            ci_week[i] = ci_week[i].split(' ');
+        }
+        //날짜계산
+        var date_arr = [];
+        var i = 0;
+        var cnt = 0;
+        while(1){
+            if(i==0){
+                for(var j = 0; j<ci_week.length; j++){
+                    if(ci_week[j][0] == str_date.format("E")){
+                        if(ci_week[j][0] == str_date.format("E")){
+                            date_arr[cnt] = str_date.format("yyyy-MM-dd")+" "+ ci_week[j][1] +" "+ ci_week[j][2] +""+ ci_week[j][3];
+                            date_arr[cnt] = date_arr[cnt].split(" ");
+                            date_arr[cnt][3] = 0;
+                            date_arr[cnt][4] = 0;
+                            var str_time = date_arr[cnt][1].split('~')[0];
+                            var end_time = date_arr[cnt][1].split('~')[1];
+                            var str_hour = str_time.split(':')[0];
+                            var end_hour = end_time.split(':')[0];
+                            var min = (end_hour-str_hour) * 60;
+                            var att_cnt = min/5;
+                            date_arr[cnt][5] = att_cnt;
+                            cnt++;
+                        }
+                    }
+                }
+
+            }else{
+                var dayOfMonth = str_date.getDate();
+                str_date.setDate(dayOfMonth + 1);
+                for(var j = 0; j<ci_week.length; j++){
+                    if(ci_week[j][0] == str_date.format("E")){
+                        date_arr[cnt] = str_date.format("yyyy-MM-dd")+" "+ ci_week[j][1] +" "+ ci_week[j][2] +""+ ci_week[j][3];
+                        date_arr[cnt] = date_arr[cnt].split(" ");
+                        date_arr[cnt][3] = 0;
+                        date_arr[cnt][4] = 0;
+                        var str_time = date_arr[cnt][1].split('~')[0];
+                        var end_time = date_arr[cnt][1].split('~')[1];
+                        var str_hour = str_time.split(':')[0];
+                        var end_hour = end_time.split(':')[0];
+                        var min = (end_hour-str_hour) * 60;
+                        var att_cnt = min/5;
+                        date_arr[cnt][5] = att_cnt;
                         cnt++;
                     }
                 }
@@ -120,16 +196,17 @@ router.get('/class/:ci_code/:si_num', function(req, res, next) {
             for(var j=0; j<results.length; j++){
 
                 if(date_arr[i][0] == results[j].created_at.format('yyyy-MM-dd')){
-
                     if(str_time < results[j].created_at.format('HH:mm') && end_time > results[j].created_at.format('HH:mm')){
                         date_arr[i][3]++;
-                        if(date_arr[i][4] == 0)
+
+                        if(date_arr[i][4] == 0){
                             date_arr[i][4] = results[j].created_at.format('yyyy-MM-dd HH:mm');
+                        }
+
                     }
                 }
             }
         }
-         console.log(date_arr);
 
         res.render('admin/student',{attendance: results, date_arr: date_arr});
     });
