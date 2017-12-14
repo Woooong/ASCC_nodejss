@@ -199,9 +199,7 @@ router.get('/class/:ci_code/:si_num', function(req, res, next) {
                     if(str_time < results[j].created_at.format('HH:mm') && end_time > results[j].created_at.format('HH:mm')){
                         date_arr[i][3]++;
 
-                        if(date_arr[i][4] == 0){
                             date_arr[i][4] = results[j].created_at.format('yyyy-MM-dd HH:mm');
-                        }
 
                     }
                 }
